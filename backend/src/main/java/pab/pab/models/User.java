@@ -33,7 +33,7 @@ public class User {
     private String address;
 
     @ManyToOne
-    @JoinColumn(name = "formation_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "formation_id", referencedColumnName = "id", insertable = false)
     private Formation formation;
 
     @Column(name = "user_type", nullable = false)
