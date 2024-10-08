@@ -2,6 +2,7 @@ package pab.pab.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import pab.pab.models.Formation;
 
 @Entity
 @Table(name = "user")
@@ -42,5 +43,4 @@ public class User {
     @Column(name = "update_date")
     private java.sql.Timestamp updateDate;
     
-
 }
