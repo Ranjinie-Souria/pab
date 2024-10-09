@@ -37,7 +37,7 @@ public class Course {
 	@Column(name = "duration", nullable = false)
 	private Integer duration;
 	
-	@Column(name = "deleted_date", nullable = false)
+	@Column(name = "deleted_date")
     private Timestamp deleted_date;
 
 	@ManyToOne
