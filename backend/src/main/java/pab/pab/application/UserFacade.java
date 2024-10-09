@@ -48,6 +48,7 @@ public class UserFacade {
 
     public void deleteUser(Integer userId) {
         if (userService.userExist(userId)) {
+            userFormationsService.getAllFormationsForUser(userId).forEach(formation -> formationService.deleteFormation(formation.getId()));
             userService.deleteUser(userId);
         }
     }
