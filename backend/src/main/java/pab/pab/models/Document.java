@@ -31,21 +31,7 @@ public class Document {
     @Column(name = "date", nullable = false)
     private Timestamp date;
     
-    @Column(name = "room_nb", nullable = false)
-    private Integer room_nb;
-    
-    @Column(name = "duration", nullable = false)
-    private Integer  duration;
-    
-    @Column(name = "deleted_date", nullable = false)
-    private Timestamp deleted_date;
-    
-    @ManyToOne
-    @JoinColumn(name = "formation_id",
-    	referencedColumnName = "id",
-    	insertable = false)
-    private Formation formation;
-    
-    
+    @Column(name = "url", nullable = false)
+    private String url;   
 
 }
