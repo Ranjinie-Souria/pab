@@ -1,48 +1,69 @@
 package pab.pab.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import pab.pab.dto.UserCreateDTO;
+import pab.pab.dto.UserDTO;
 import pab.pab.models.User;
+import pab.pab.models.UserFormations;
+import pab.pab.repositories.UserFormationsRepository;
 import pab.pab.repositories.UserRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private UserFormationsRepository userFormationsRepository;
+
+	private final ModelMapper modelMapper = new ModelMapper();
 	
-	public Optional<User> getUserById(Integer id) {
-		return userRepository.findById(id);
+	public UserDTO getUserById(Integer id) {
+		Optional<User> user = userRepository.findById(id);
+		if (user.isEmpty()) {
+			throw new RuntimeException("User not found");
+		}
+		return modelMapper.map(user.get(), UserDTO.class);
 	}
 
-	public List<User> getUsers() {
-		return userRepository.findAll();
+	public List<UserDTO> getUsers() {
+		List<User> users = userRepository.findAll();
+		return users.stream().map(user -> modelMapper.map(user, UserDTO.class)).toList();
 	}
 	
-	public User saveUser(User user) {
-		userRepository.save(user);
-		return user;
+	public UserDTO createUser(UserCreateDTO userCreateDTO) {
+		User userSaved = userRepository.save(modelMapper.map(userCreateDTO, User.class));
+		userCreateDTO.getFormationIds().forEach(formationId -> userFormationsRepository.save(new UserFormations(userSaved.getId(), formationId)));
+
+		return modelMapper.map(userSaved, UserDTO.class);
 	}
 	
 	public void deleteUser(Integer idUser) {
-		User user = this.getUserById(idUser).get();
-		if(user != null) {
-			userRepository.delete(user);
-		}
+		userRepository.deleteById(idUser);
 	}
 
-	public User updateUser(Integer id, User user) {
-		if(this.getUserById(id).get() != null) {
-			User editedUser = user;
-			editedUser.setId(id);
-			userRepository.save(editedUser);
-			return editedUser;
+	public UserDTO updateUser(Integer id, UserCreateDTO userCreateDTO) {
+		if (userRepository.existsById(id)) {
+			User user = userRepository.findById(id).get();
+			user.setUserType(userCreateDTO.getUserType());
+			user.setEmail(userCreateDTO.getEmail());
+			user.setLastname(userCreateDTO.getLastname());
+			user.setFirstname(userCreateDTO.getFirstname());
+			user.setAddress(userCreateDTO.getAddress());
+			user.setPhone(userCreateDTO.getPhone());
+			User userUpdated = userRepository.save(user);
+			return modelMapper.map(userUpdated, UserDTO.class);
 		}
-		return null;
+		throw new RuntimeException("User not exist");
+	}
+
+	public Boolean userExist(Integer id) {
+		return userRepository.existsById(id);
 	}
 	
 	
