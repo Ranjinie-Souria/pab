@@ -24,8 +24,7 @@ CREATE TABLE user (
     address VARCHAR(50) NOT NULL,
     user_type VARCHAR(50) NOT NULL,
     update_date TIMESTAMP,
-    PRIMARY KEY (id),
-    FOREIGN KEY (formation_id) REFERENCES formation(id)
+    PRIMARY KEY (id)
 );
 
 -- Création de la table UserFormations
