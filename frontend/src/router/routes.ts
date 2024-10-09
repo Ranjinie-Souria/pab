@@ -8,27 +8,39 @@ const routes = [
   {
     path: "/lesson/:id",
     name: "Lesson",
-    component: () => import("../views/Lessons/Lesson.vue"),
+    component: () => import("../views/Lessons/OneLesson.vue"),
   },
   {
     path: "/lesson",
     name: "Lessons",
     component: () => import("../views/Lessons/AllLessons.vue"),
+    children: [
+      {
+        path: "add",
+        name: "AddLesson",
+        component: () => import("../views/Lessons/AddLesson.vue"),
+      },
+      {
+        path: "edit/:id",
+        name: "EditLesson",
+        component: () => import("../views/Lessons/EditLesson.vue"),
+      },
+      {
+        path: "delete/:id",
+        name: "DeleteLesson",
+        component: () => import("../views/Lessons/DeleteLesson.vue"),
+      },
+      {
+        path: "attendance/:id",
+        name: "Attendance",
+        component: () => import("../views/Lessons/Attendance.vue"),
+      },
+    ],
   },
   {
-    path: "/lesson/add",
-    name: "AddLesson",
-    component: () => import("../views/Lessons/AddLesson.vue"),
-  },
-  {
-    path: "/lesson/edit/:id",
-    name: "EditLesson",
-    component: () => import("../views/Lessons/EditLesson.vue"),
-  },
-  {
-    path: "/lesson/delete/:id",
-    name: "DeleteLesson",
-    component: () => import("../views/Lessons/DeleteLesson.vue"),
+    path: "/student/:id",
+    name: "Student",
+    component: () => import("../views/Students/OneStudent.vue"),
   },
   {
     path: "/:pathMatch(.*)*",
