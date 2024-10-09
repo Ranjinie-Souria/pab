@@ -2,13 +2,16 @@ package pab.pab.application;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pab.pab.dto.UserCreateDTO;
 import pab.pab.dto.UserDTO;
 import pab.pab.services.FormationService;
 import pab.pab.services.UserFormationsService;
 import pab.pab.services.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserFacade {
@@ -32,11 +35,16 @@ public class UserFacade {
         return userDTOS;
     }
 
+    @Transactional
     public UserDTO createUser(UserCreateDTO userCreateDTO) {
-        if (userCreateDTO.getFormationIds().isEmpty() ||
+        if (Objects.isNull(userCreateDTO.getFormationIds()) || userCreateDTO.getFormationIds().isEmpty() ||
                 userCreateDTO.getFormationIds().stream().allMatch(formationId -> formationService.existsFormationById(formationId))) {
             UserDTO userDTO = userService.createUser(userCreateDTO);
-            userDTO.setFormations(userCreateDTO.getFormationIds().stream().map(formationId -> formationService.getFormationById(formationId)).toList());
+            if (Objects.nonNull(userCreateDTO.getFormationIds())) {
+                userDTO.setFormations(userCreateDTO.getFormationIds().stream().map(formationId -> formationService.getFormationById(formationId)).toList());
+            } else {
+                userDTO.setFormations(new ArrayList<>());
+            }
             return userDTO;
         }
         throw new RuntimeException("A formation does not exist");

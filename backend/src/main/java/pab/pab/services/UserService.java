@@ -11,6 +11,7 @@ import pab.pab.repositories.UserFormationsRepository;
 import pab.pab.repositories.UserRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -38,8 +39,9 @@ public class UserService {
 	
 	public UserDTO createUser(UserCreateDTO userCreateDTO) {
 		User userSaved = userRepository.save(modelMapper.map(userCreateDTO, User.class));
-		userCreateDTO.getFormationIds().forEach(formationId -> userFormationsRepository.save(new UserFormations(userSaved.getId(), formationId)));
-
+		if (Objects.nonNull(userCreateDTO.getFormationIds()) && !userCreateDTO.getFormationIds().isEmpty()) {
+			userCreateDTO.getFormationIds().forEach(formationId -> userFormationsRepository.save(new UserFormations(userSaved.getId(), formationId)));
+		}
 		return modelMapper.map(userSaved, UserDTO.class);
 	}
 	

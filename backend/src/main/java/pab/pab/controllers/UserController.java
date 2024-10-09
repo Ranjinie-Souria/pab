@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import pab.pab.application.UserFacade;
 import pab.pab.dto.UserCreateDTO;
 import pab.pab.dto.UserDTO;
-import pab.pab.models.UserFormations;
 
 import java.util.List;
 

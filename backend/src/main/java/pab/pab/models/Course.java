@@ -1,18 +1,12 @@
 package pab.pab.models;
 
-import java.sql.Timestamp;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "course")
@@ -29,7 +23,7 @@ public class Course {
 	private String name;
 
 	@Column(name = "date", nullable = false)
-	private Timestamp date;
+	private LocalDate date;
 	
 	@Column(name = "room_nb", nullable = false)
 	private Integer roomNb;
@@ -38,7 +32,7 @@ public class Course {
 	private Integer duration;
 	
 	@Column(name = "deleted_date")
-    private Timestamp deleted_date;
+    private LocalDateTime deleted_date;
 
 	@ManyToOne
 	@JoinColumn(name = "formation_id", referencedColumnName = "id", insertable = false)
