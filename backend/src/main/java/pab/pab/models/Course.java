@@ -1,5 +1,7 @@
 package pab.pab.models;
 
+import java.sql.Timestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,21 +20,28 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Course {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
-    @Column(name = "name", nullable = false)
-    private String name;
-    
-    @Column(name = "date", nullable = false)
-    private Integer year;
-    
-    @ManyToOne
-    @JoinColumn(name = "formation_id",
-    	referencedColumnName = "id",
-    	insertable = false)
-    private Formation formation;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@Column(name = "name", nullable = false)
+	private String name;
+
+	@Column(name = "date", nullable = false)
+	private Timestamp date;
+	
+	@Column(name = "room_nb", nullable = false)
+	private Integer roomNb;
+	
+	@Column(name = "duration", nullable = false)
+	private Integer duration;
+	
+	@Column(name = "deleted_date", nullable = false)
+    private Timestamp deleted_date;
+
+	@ManyToOne
+	@JoinColumn(name = "formation_id", referencedColumnName = "id", insertable = false)
+	private Formation formation;
 
 }
