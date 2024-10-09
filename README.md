@@ -1,5 +1,9 @@
 # PAB
 
+## Diagramme de l'architecture
+
+![DiagrammeArchitecture](img/diagrammeArchitecture.png)
+
 ## Schéma de la base de données
 
 ![BDD](img/schemaSQL.png)
