@@ -5,6 +5,7 @@ export interface Lesson {
   room_number?: number
   formation_id: number
   duration: number
+  users_id?: number[]
   /* teacher: string */
   /* deleted_date?: Date */
 }
