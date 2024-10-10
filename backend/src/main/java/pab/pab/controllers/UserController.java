@@ -1,5 +1,6 @@
 package pab.pab.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pab.pab.application.UserFacade;
@@ -9,6 +10,7 @@ import pab.pab.dto.UserDTO;
 import java.util.List;
 
 @RestController
+@Tag(name = "USER")
 @RequestMapping("/user")
 public class UserController {
     

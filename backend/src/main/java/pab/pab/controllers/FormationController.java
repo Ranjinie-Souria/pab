@@ -1,11 +1,13 @@
 package pab.pab.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pab.pab.application.FormationFacade;
 import pab.pab.dto.FormationDTO;
 
 @RestController
+@Tag(name = "FORMATION")
 @RequestMapping("/formation")
 public class FormationController {
 
