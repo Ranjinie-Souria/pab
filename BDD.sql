@@ -22,10 +22,17 @@ CREATE TABLE user (
     password VARCHAR(50) NOT NULL,
     phone VARCHAR(50) NOT NULL,
     address VARCHAR(50) NOT NULL,
-    formation_id INT NOT NULL,
     user_type VARCHAR(50) NOT NULL,
     update_date TIMESTAMP,
-    PRIMARY KEY (id),
+    PRIMARY KEY (id)
+);
+
+-- Création de la table UserFormations
+CREATE TABLE user_formations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    formation_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (formation_id) REFERENCES formation(id)
 );
 

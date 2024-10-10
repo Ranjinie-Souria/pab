@@ -11,6 +11,7 @@ import pab.pab.repositories.UserFormationsRepository;
 import pab.pab.repositories.UserRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -38,8 +39,9 @@ public class UserService {
 	
 	public UserDTO createUser(UserCreateDTO userCreateDTO) {
 		User userSaved = userRepository.save(modelMapper.map(userCreateDTO, User.class));
-		userCreateDTO.getFormationIds().forEach(formationId -> userFormationsRepository.save(new UserFormations(userSaved.getId(), formationId)));
-
+		if (Objects.nonNull(userCreateDTO.getFormationIds()) && !userCreateDTO.getFormationIds().isEmpty()) {
+			userCreateDTO.getFormationIds().forEach(formationId -> userFormationsRepository.save(new UserFormations(userSaved.getId(), formationId)));
+		}
 		return modelMapper.map(userSaved, UserDTO.class);
 	}
 	
@@ -50,12 +52,24 @@ public class UserService {
 	public UserDTO updateUser(Integer id, UserCreateDTO userCreateDTO) {
 		if (userRepository.existsById(id)) {
 			User user = userRepository.findById(id).get();
-			user.setUserType(userCreateDTO.getUserType());
-			user.setEmail(userCreateDTO.getEmail());
-			user.setLastname(userCreateDTO.getLastname());
-			user.setFirstname(userCreateDTO.getFirstname());
-			user.setAddress(userCreateDTO.getAddress());
-			user.setPhone(userCreateDTO.getPhone());
+			if (Objects.nonNull(userCreateDTO.getUserType())) {
+				user.setUserType(userCreateDTO.getUserType());
+			}
+			if (Objects.nonNull(userCreateDTO.getEmail())) {
+				user.setEmail(userCreateDTO.getEmail());
+			}
+			if (Objects.nonNull(userCreateDTO.getLastname())) {
+				user.setLastname(userCreateDTO.getLastname());
+			}
+			if (Objects.nonNull(userCreateDTO.getFirstname())) {
+				user.setFirstname(userCreateDTO.getFirstname());
+			}
+			if (Objects.nonNull(userCreateDTO.getAddress())) {
+				user.setAddress(userCreateDTO.getAddress());
+			}
+			if (Objects.nonNull(userCreateDTO.getPhone())) {
+				user.setPhone(userCreateDTO.getPhone());
+			}
 			User userUpdated = userRepository.save(user);
 			return modelMapper.map(userUpdated, UserDTO.class);
 		}
