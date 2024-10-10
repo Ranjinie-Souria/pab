@@ -47,7 +47,7 @@ onMounted(() => {
                   <pab-button label="Edit" />
                 </router-link>
                 <router-link v-if="deleteCta" :to="`${deleteCta}/${row.id}`">
-                  <pab-button label="Delete" />
+                  <pab-button label="Delete" btn-style="danger" />
                 </router-link>
               </div>
             </slot>
