@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,7 +22,10 @@ public class Course {
 	private String name;
 
 	@Column(name = "date", nullable = false)
-	private LocalDate date;
+	private LocalDateTime date;
+
+	@Column(name = "formation_id", nullable = false)
+	private Integer formationId;
 	
 	@Column(name = "room_nb", nullable = false)
 	private Integer roomNb;
@@ -32,10 +34,5 @@ public class Course {
 	private Integer duration;
 	
 	@Column(name = "deleted_date")
-    private LocalDateTime deleted_date;
-
-	@ManyToOne
-	@JoinColumn(name = "formation_id", referencedColumnName = "id", insertable = false)
-	private Formation formation;
-
+    private LocalDateTime deletedDate;
 }

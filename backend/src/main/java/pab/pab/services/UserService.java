@@ -52,12 +52,24 @@ public class UserService {
 	public UserDTO updateUser(Integer id, UserCreateDTO userCreateDTO) {
 		if (userRepository.existsById(id)) {
 			User user = userRepository.findById(id).get();
-			user.setUserType(userCreateDTO.getUserType());
-			user.setEmail(userCreateDTO.getEmail());
-			user.setLastname(userCreateDTO.getLastname());
-			user.setFirstname(userCreateDTO.getFirstname());
-			user.setAddress(userCreateDTO.getAddress());
-			user.setPhone(userCreateDTO.getPhone());
+			if (Objects.nonNull(userCreateDTO.getUserType())) {
+				user.setUserType(userCreateDTO.getUserType());
+			}
+			if (Objects.nonNull(userCreateDTO.getEmail())) {
+				user.setEmail(userCreateDTO.getEmail());
+			}
+			if (Objects.nonNull(userCreateDTO.getLastname())) {
+				user.setLastname(userCreateDTO.getLastname());
+			}
+			if (Objects.nonNull(userCreateDTO.getFirstname())) {
+				user.setFirstname(userCreateDTO.getFirstname());
+			}
+			if (Objects.nonNull(userCreateDTO.getAddress())) {
+				user.setAddress(userCreateDTO.getAddress());
+			}
+			if (Objects.nonNull(userCreateDTO.getPhone())) {
+				user.setPhone(userCreateDTO.getPhone());
+			}
 			User userUpdated = userRepository.save(user);
 			return modelMapper.map(userUpdated, UserDTO.class);
 		}
