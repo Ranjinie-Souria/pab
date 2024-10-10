@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import pabButton from '@/components/atoms/pabButton.vue'
+import pabButton from '../atoms/pabButton.vue'
 
 const connected = ref()
 const route = useRoute()

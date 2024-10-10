@@ -17,17 +17,17 @@ const routes = [
     children: [
       {
         path: "add",
-        name: "AddLesson",
+        name: "Add Lesson",
         component: () => import("../views/Lessons/AddLesson.vue"),
       },
       {
         path: "edit/:id",
-        name: "EditLesson",
+        name: "Edit Lesson",
         component: () => import("../views/Lessons/EditLesson.vue"),
       },
       {
         path: "delete/:id",
-        name: "DeleteLesson",
+        name: "Delete Lesson",
         component: () => import("../views/Lessons/DeleteLesson.vue"),
       },
       {

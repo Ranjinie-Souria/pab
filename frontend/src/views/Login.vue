@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
-import pabForm from "@/components/molecules/pabForm.vue";
+import pabForm from "../components/molecules/pabForm.vue";
 import { nextTick } from "vue";
 
 const router = useRouter();

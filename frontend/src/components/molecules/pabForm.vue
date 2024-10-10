@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { defineEmits } from "vue";
-import pabTitle from "@/components/atoms/pabTitle.vue";
-import pabInput from "@/components/atoms/pabInput.vue";
-import pabButton from "@/components/atoms/pabButton.vue";
+import pabTitle from "../atoms/pabTitle.vue";
+import pabInput from "../atoms/pabInput.vue";
+import pabButton from "../atoms/pabButton.vue";
 
 interface Input {
   label: string;

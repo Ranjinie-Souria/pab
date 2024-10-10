@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { Lesson } from '@/utils/ifaces/Lesson'
-import { Cell, Row } from '@/utils/ifaces/table'
-import pabTitle from '@/components/atoms/pabTitle.vue'
-import pabButton from '@/components/atoms/pabButton.vue'
-import pabTable from '@/components/molecules/pabTable.vue'
+//import { Lesson } from '../../utils/ifaces/lesson.interface'
+import { /* Cell,  */ Row } from '../../utils/ifaces/table.interface'
+import pabTitle from '../../components/atoms/pabTitle.vue'
+import pabButton from '../../components/atoms/pabButton.vue'
+import pabTable from '../../components/molecules/pabTable.vue'
 
 const columns = ['Lesson', 'Date', 'Duration', 'Class Number', 'Teacher ID', 'Actions']
 const rows: Row[] = [
   {
     id: 1,
-    cells: () => [
+    cells: [
       { value: 'Lesson 1', action: false },
       { value: '2024-01-01', action: false },
       { value: 2, action: false },
@@ -89,7 +89,7 @@ const rows: Row[] = [
 
 <template>
   <pab-title title="Lessons" />
-  <router-link to="/lesson/add" style="width: fit-content">
+  <router-link to="/lessons/add" style="width: fit-content">
     <pab-button label="Add new lesson" />
   </router-link>
   <pab-table

@@ -4,6 +4,6 @@ export interface Row {
 }
 
 export interface Cell {
-  value: string
+  value: string | number
   action: boolean
 }

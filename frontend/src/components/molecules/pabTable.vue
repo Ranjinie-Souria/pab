@@ -1,26 +1,28 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue'
-import { Row, Cell } from '@/utils/ifaces/table'
-import PabButton from '@/components/atoms/PabButton.vue'
+import { Row /* , Cell */ } from '../../utils/ifaces/table.interface'
+import PabButton from '../atoms/pabButton.vue'
 
 export interface Props {
   columns: string[]
-  rows: Row[]
+  rows?: Row[]
   viewCta?: string
   editCta?: string
   deleteCta?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  columns: ['Column 1', 'Column 2'],
-  rows: [],
+  columns: () => ['Column 1', 'Column 2'],
   viewCta: '',
   editCta: '',
   deleteCta: ''
 })
 
 onMounted(() => {
-  console.log(props.rows[0].cells)
+  if (props.rows) {
+    console.log(props.rows)
+    console.log(props.rows[0].cells)
+  }
 })
 </script>
 
@@ -32,8 +34,8 @@ onMounted(() => {
       </tr>
     </thead>
     <tbody class="pab-table-body">
-      <tr class="pab-table-row" v-for="row in rows" :key="row[0]">
-        <td class="pab-table-cell" v-for="cell in row.cells" :key="cell">
+      <tr class="pab-table-row" v-for="row in rows" :key="row.id">
+        <td class="pab-table-cell" v-for="cell in row.cells" :key="cell.value">
           <template v-if="!cell.action">{{ cell.value }}</template>
           <template v-else>
             <div class="pab-table-actions">
