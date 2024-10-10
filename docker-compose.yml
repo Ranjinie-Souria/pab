@@ -18,10 +18,10 @@ services:
   db:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=pab
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
     ports:
       - "3306:3306"
     volumes:
