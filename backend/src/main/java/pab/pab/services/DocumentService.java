@@ -7,10 +7,12 @@ import java.util.Date;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Service;
 import pab.pab.dto.DocumentDTO;
 import pab.pab.models.Document;
 import pab.pab.repositories.DocumentRepository;
 
+@Service
 public class DocumentService {
     
     @Autowired

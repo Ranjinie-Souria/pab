@@ -2,9 +2,11 @@ package pab.pab.application;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Service;
 import pab.pab.dto.DocumentDTO;
 import pab.pab.services.DocumentService;
 
+@Service
 public class DocumentFacade {
 
     @Autowired
