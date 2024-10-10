@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import PabFooter from "@/components/molecules/pabFooter.vue";
-import PabHeader from "@/components/molecules/pabHeader.vue";
+import PabFooter from "../molecules/pabFooter.vue";
+import PabHeader from "../molecules/pabHeader.vue";
 </script>
 
 <template>

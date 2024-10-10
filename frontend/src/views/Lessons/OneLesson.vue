@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { Lesson } from '@/utils/ifaces/Lesson'
-import pabTitle from '@/components/atoms/pabTitle.vue'
-import pabButton from '@/components/atoms/pabButton.vue'
+import { Lesson } from '../../utils/ifaces/lesson.interface'
+import pabTitle from '../../components/atoms/pabTitle.vue'
+import pabButton from '../../components/atoms/pabButton.vue'
 
 const lesson: Lesson = {
   id: 1,
   name: 'Lesson 1',
   date: new Date('2024-01-01'),
-  room: 1,
-  duration: '1h',
-  class: 'Class 1',
-  teacher: 'Teacher 1'
+  room_number: 1,
+  duration: 1,
+  formation_id: 1/* ,
+  teacher: 'Teacher 1' */
 }
 
 // TODO Get lesson from backend

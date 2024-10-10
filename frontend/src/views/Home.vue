@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import PabTitle from "@/components/atoms/pabTitle.vue";
-import PabButton from "@/components/atoms/pabButton.vue";
+import PabTitle from "../components/atoms/pabTitle.vue";
+import PabButton from "../components/atoms/pabButton.vue";
 </script>
 
 <template>
