@@ -38,17 +38,19 @@ onMounted(() => {
         <td class="pab-table-cell" v-for="cell in row.cells" :key="cell.value">
           <template v-if="!cell.action">{{ cell.value }}</template>
           <template v-else>
-            <div class="pab-table-actions">
-              <router-link v-if="viewCta" :to="`${viewCta}/${row.id}`">
-                <pab-button label="View" />
-              </router-link>
-              <router-link v-if="editCta" :to="`${editCta}/${row.id}`">
-                <pab-button label="Edit" />
-              </router-link>
-              <router-link v-if="deleteCta" :to="`${deleteCta}/${row.id}`">
-                <pab-button label="Delete" />
-              </router-link>
-            </div>
+            <slot name="actions" :row="row">
+              <div class="pab-table-actions">
+                <router-link v-if="viewCta" :to="`${viewCta}/${row.id}`">
+                  <pab-button label="View" />
+                </router-link>
+                <router-link v-if="editCta" :to="`${editCta}/${row.id}`">
+                  <pab-button label="Edit" />
+                </router-link>
+                <router-link v-if="deleteCta" :to="`${deleteCta}/${row.id}`">
+                  <pab-button label="Delete" />
+                </router-link>
+              </div>
+            </slot>
           </template>
         </td>
       </tr>

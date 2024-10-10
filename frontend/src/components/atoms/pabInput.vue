@@ -1,15 +1,14 @@
 <template>
   <div class="flex col flex-align-start b-component-input">
     <div class="grid grid-gap-xs">
-      <div class="grid grid-gap-xs">
-        <label class="label-m-500 no-highlight b-input-label" v-if="label" :for="name">{{
+      <div class="pab-input-flex">
+        <label class="label-m-500 no-highlight pab-input-label" v-if="label" :for="name">{{
           label
         }}</label>
         <div
-          class="row gap-2 px-3 b-input flex-item-center elevation-1 br-2 py-2"
-          :class="{ 'b-input-error': errorState }"
+          class="row gap-2 px-3 pab-input elevation-1 br-2 py-2"
+          :class="{ 'pab-input-error': errorState }"
         >
-          <span class="b-input-icon my-auto" v-if="icon" :class="'icon-' + props.icon"></span>
           <slot>
             <input
               v-bind="$attrs"
@@ -22,17 +21,11 @@
               :type="currentType"
             />
           </slot>
-          <span
-          class="b-input-eye"
-            v-if="props.type === 'password'"
-            :class="showMdp ? 'icon-eye' : 'icon-no-eye'"
-            @click="toggleMdp"
-          ></span>
         </div>
       </div>
       <span
         class="error-color label-s-500 ellipsis"
-        :class="{ 'b-input-error-hint': errorState }"
+        :class="{ 'pab-input-error-hint': errorState }"
         v-if="errorState"
         >{{ error }}</span
       >
@@ -45,7 +38,6 @@ import { ref } from 'vue'
 const model = defineModel({ type: String, default: '' })
 
 export interface Props {
-  icon?: string
   label?: string
   placeholder?: string
   error?: string
@@ -55,7 +47,6 @@ export interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  icon: '',
   label: '',
   placeholder: '',
   error: '',
@@ -65,7 +56,6 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const currentType = ref(props.type)
-const showMdp = ref(false)
 const errorState = ref(false)
 function setErrorState(bool: boolean) {
   errorState.value = bool
@@ -73,10 +63,6 @@ function setErrorState(bool: boolean) {
 
 defineExpose({ setErrorState })
 
-function toggleMdp() {
-  showMdp.value = !showMdp.value
-  currentType.value = showMdp.value ? 'text' : 'password'
-}
 </script>
 <style lang="scss" scoped>
 .pab-input-label {
@@ -96,8 +82,22 @@ function toggleMdp() {
 }
 
 .pab-input {
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius-2, 8px);
+  padding: 0 var(--size-rem-1, 16px);
   min-height: var(--size-rem-2, 32px);
   background-color: var(--input-background-color, #fff);
+
+  &-flex {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-rem-2, 8px);
+  }
+
+  input {
+    width: 100%;
+  }
 
   &:has(:disabled) {
     outline: 1px solid var(--neutral-dark-color, #cac5cd);

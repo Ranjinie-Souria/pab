@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { onMounted } from 'vue'
+import axiosAPI from '../../axios.instance'
 //import { Lesson } from '../../utils/ifaces/lesson.interface'
 import { /* Cell,  */ Row } from '../../utils/ifaces/table.interface'
 import pabTitle from '../../components/atoms/pabTitle.vue'
@@ -85,19 +87,34 @@ const rows: Row[] = [
     ]
   }
 ]
+
+onMounted(() => {
+  if (axiosAPI) {
+    axiosAPI
+      .get('/lessons')
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  } else {
+    console.error('axiosAPI is not defined')
+  }
+})
 </script>
 
 <template>
   <pab-title title="Lessons" />
-  <router-link to="/lessons/add" style="width: fit-content">
-    <pab-button label="Add new lesson" />
+  <router-link to="/lessons/create" style="width: fit-content">
+    <pab-button label="Create new lesson" />
   </router-link>
   <pab-table
     :columns
     :rows
-    view-cta="/lesson"
-    edit-cta="/lesson/edit"
-    delete-cta="/lesson/delete"
+    view-cta="/lessons/view"
+    edit-cta="/lessons/edit"
+    delete-cta="/lessons/delete"
   />
 </template>
 

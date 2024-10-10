@@ -14,10 +14,10 @@ import PabButton from "../components/atoms/pabButton.vue";
   <div class="pab-button-group">
     <div class="pab-button-group-section">
       <span>Lessons : </span>
-      <router-link to="/lesson"
+      <router-link to="/lessons"
         ><pab-button label="See all lessons"
       /></router-link>
-      <router-link to="/lesson/create"
+      <router-link to="/lessons/create"
         ><pab-button label="Create a lesson"
       /></router-link>
     </div>
@@ -37,6 +37,12 @@ import PabButton from "../components/atoms/pabButton.vue";
       /></router-link>
       <router-link to="/teachers/create"
         ><pab-button label="Create a teacher"
+      /></router-link>
+    </div>
+    <div class="pab-button-group-section">
+      <span>Users : </span>
+      <router-link to="/users"
+        ><pab-button label="See users"
       /></router-link>
     </div>
   </div>

@@ -9,7 +9,7 @@ const lesson: Lesson = {
   date: new Date('2024-01-01'),
   room_number: 1,
   duration: 1,
-  formation_id: 1/* ,
+  formation_id: 1 /* ,
   teacher: 'Teacher 1' */
 }
 
@@ -19,18 +19,36 @@ const lesson: Lesson = {
 </script>
 
 <template>
-  <pab-title :title="`Lesson ${lesson.name}`" />
-  <router-link :to="`/lesson/attendance/${lesson.id}`">
-    <pab-button label="Do the attendance" />
-  </router-link>
-  <router-link :to="`/lesson/edit/${lesson.id}`">
-    <pab-button label="Edit" />
-  </router-link>
-  <router-link :to="`/lesson/delete/${lesson.id}`">
-    <pab-button label="Delete" />
-  </router-link>
-  <p>Here is the content of the lesson.</p>
+  <pab-title :title="`Lesson : ${lesson.name}`" />
+  <div class="pab-button-group">
+    <router-link :to="`/lessons/attendance/${lesson.id}`">
+      <pab-button label="Do the attendance" />
+    </router-link>
+    <router-link :to="`/lessons/edit/${lesson.id}`">
+      <pab-button label="Edit" />
+    </router-link>
+    <router-link :to="`/lessons/delete/${lesson.id}`">
+      <pab-button label="Delete" />
+    </router-link>
+  </div>
   <pab-title title="Content" type="subtitle" />
+  <span>Date :{{ lesson.date }}</span>
+  <span>Room number :{{ lesson.room_number }}</span>
+  <span>Duration :{{ lesson.duration }}</span>
+  <span>Formation ID :{{ lesson.formation_id }}</span>
+  <!-- <span>Teacher :{{ lesson.teacher }}</span> -->
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.pab-button-group {
+  display: flex;
+  gap: 20px;
+  padding-left: 20px;
+
+  &-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+}
+</style>
